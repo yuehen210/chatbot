@@ -84,11 +84,11 @@ bot.dialog("firstTime", [
 });
 
 // wikipedia検索機能を定義したファイルを読み込む
-bot.library(require('./dialogs/wikipedia').createLibrary());
+bot.library(require('./wikipedia').createLibrary());
 // 20Q機能を定義したファイルを読み込む
-bot.library(require('./dialogs/20Q').createLibrary());
+bot.library(require('./20Q').createLibrary());
 // help機能を定義したファイルを読み込む
-bot.library(require('./dialogs/help').createLibrary());
+bot.library(require('./help').createLibrary());
 
 // 会話に変化があった時の処理を記述する(例：会話に入っているユーザーが増えた、減った)
 bot.on('conversationUpdate', function (message) {});
