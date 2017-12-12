@@ -109,6 +109,11 @@ lib.dialog("20Q_question", [
         if (results.response) {
             // 回答をもとにスコアを計算する
             session.privateConversationData.score += menu[results.response.entity].score;
+　　　　　　if(session.privateConversationData.score<0){
+              session.send("何で好きじゃないの？もう一度最初からやります！");
+	　　session.privateConversationData.question_num=0;
+            break;
+            }
 
             //現在の質問番号を加算する
             session.privateConversationData.question_num++;
