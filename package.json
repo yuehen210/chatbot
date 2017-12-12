@@ -1,0 +1,19 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^3.9.1",
+    "date-utils": "^1.2.21",
+    "node-schedule": "^1.2.5",
+    "restify": "^5.2.0",
+    "superagent": "^3.6.3"
+  }
+}
