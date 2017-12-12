@@ -58,26 +58,14 @@ lib.dialog('20Q', [
 
             // scoreが4より大きい場合、ガムを連想したということ
             session.send("あ！答えを保存するのが忘れました。もう一度最初からやります！");
+	　　session.privateConversationData.question_num=0;
             session.beginDialog("20Q_question");
-
-        } else if (session.privateConversationData.score < 0) {
-            // scoreが0未満の場合、ノートパソコンをイメージしたということ
-            session.send("あなたがイメージしたのはノートパソコンですね！");
-            builder.Prompts.choice(session, "YES or NO!", menu);
 
         } else {
             //scoreが0だった時は回答不能
             session.endConversation("あなたが何をイメージしているのか分からない...")
         }
     },
-    (session, results, next) => {
-        // 予想が当たったのかをユーザーが回答した時の処理
-        if (menu[results.response.entity].score == 1) {
-            session.endConversation("当たりました！");
-        } else if (menu[results.response.entity].score == -1) {
-            session.endConversation("外れました...");
-        }
-    }
 
     // この機能を実行するためのトリガーを定義
 ]).triggerAction({
