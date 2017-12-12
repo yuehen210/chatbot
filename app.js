@@ -89,8 +89,7 @@ bot.library(require('./wikipedia').createLibrary());
 bot.library(require('./20Q').createLibrary());
 // help機能を定義したファイルを読み込む
 bot.library(require('./help').createLibrary());
-
-bot.library(require('./占い').createLibrary());
+bot.library(require('./sekaku').createLibrary());
 
 // 会話に変化があった時の処理を記述する(例：会話に入っているユーザーが増えた、減った)
 bot.on('conversationUpdate', function (message) {});

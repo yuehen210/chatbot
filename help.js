@@ -10,7 +10,8 @@ const triggerRegExp = "^help$"
 const func = [
     "wiki",
     "20Q",
-    "weather"
+    "weather",
+    "性格診断"
 ]
 
 // 他機能の未実行時に開始するヘルプ機能
@@ -31,6 +32,9 @@ lib.dialog('help_global', [
                 break;
             case "weather":
                 session.replaceDialog("help_weather")
+                break;
+            case "性格診断":
+                session.replaceDialog("help_seikaku")
                 break;
         }
     }
@@ -68,6 +72,14 @@ lib.dialog("help_weather", [
     (session, args, next) => {
         session.send("毎日８時に天気予報を取得します。");
         session.endConversation("weatherと入力すると開始します。");
+    }
+])
+
+// 性格診断のヘルプを定義する
+lib.dialog("help_seikaku", [
+    (session, args, next) => {
+        session.send("性格診断をやります。");
+        session.endConversation("開始と入力すると開始します。");
     }
 ])
 
