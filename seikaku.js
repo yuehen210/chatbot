@@ -58,10 +58,6 @@ lib.dialog('20Q', [
             session.send("好きなのは食べ物しかないね。健康に悪いからもう一度最初からやります！");
 	　　session.privateConversationData.question_num=0;
             session.beginDialog("20Q_question");
-        }else if(session.privateConversationData.score < 0){
-            session.send("何で好きじゃないの？もう一度最初からやります！");
-	　　session.privateConversationData.question_num=0;
-            session.beginDialog("20Q_question");
         }else {
             //scoreが0だった時は回答不能
             session.endConversation("あなたが何をイメージしているのか分からない...")
@@ -111,8 +107,8 @@ lib.dialog("20Q_question", [
             session.privateConversationData.score += menu[results.response.entity].score;
 　　　　　　if(session.privateConversationData.score<0){
               session.send("何で好きじゃないの？もう一度最初からやります！");
-	　　session.privateConversationData.question_num=0;
-            break;
+	　　  session.privateConversationData.question_num=0;
+              session.privateConversationData.score=0;
             }
 
             //現在の質問番号を加算する
