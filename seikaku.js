@@ -1,6 +1,6 @@
 const builder = require('botbuilder');
 
-// このライブラリに20Qという名前をつける
+// このライブラリにseikakuという名前をつける
 var lib = new builder.Library('seikaku');
 
 //質問内容を定義
@@ -22,16 +22,13 @@ const menu = {
     }
 }
 
-// 機能が呼び出される文字列の正規表現 (20Q 又は 20q と入力されると実行する)
+// 機能が呼び出される文字列の正規表現 (開始と入力されると実行する)
 const triggerRegExp = "開始"
 
 // ライブラリにダイアログを定義する
 // 機能が開始して最初のダイアログを定義している
 lib.dialog('20Q', [
     (session, args, next) => {
-        // まだゲームは開始されていない
-        session.send("ノートパソコンかガムを思い浮かべてください");
-
         // 第２引数がユーザーへの問いかけ
         // 第３引数がユーザーの選択肢
         builder.Prompts.choice(session, "準備はいいですか？", ["START", "CANCEL"]);
@@ -57,11 +54,11 @@ lib.dialog('20Q', [
     },
     (session, args, next) => {
         // スコアを確認してユーザーがイメージした物を回答する
-        if (session.privateConversationData.score > 0) {
+        if (session.privateConversationData.score > 4) {
 
-            // scoreが0より大きい場合、ガムを連想したということ
-            session.send("あなたがイメージしたのはガムですね！");
-            builder.Prompts.choice(session, "YES or NO!", menu);
+            // scoreが4より大きい場合、ガムを連想したということ
+            session.send("あ！答えを保存するのが忘れました。もう一度最初からやります！");
+            session.beginDialog("20Q_question");
 
         } else if (session.privateConversationData.score < 0) {
             // scoreが0未満の場合、ノートパソコンをイメージしたということ
