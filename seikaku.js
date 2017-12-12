@@ -5,11 +5,11 @@ var lib = new builder.Library('seikaku');
 
 //質問内容を定義
 const question = [
-    "ゴルフボールより小さいですか？",
-    "丸いですか？",
-    "弾力はありますか？",
-    "食べることが出来ますか？",
-    "水に浸けても大丈夫ですか？"
+    "ラーメン好きですか？",
+    "焼肉好きですか？",
+    "天ぷら好きですか？",
+    "もつ鍋好きですか？",
+    "寿司すきですか？"
 ];
 
 // ユーザーに問いかける際のメッセージと回答に関連する情報を定義する
@@ -55,13 +55,14 @@ lib.dialog('20Q', [
     (session, args, next) => {
         // スコアを確認してユーザーがイメージした物を回答する
         if (session.privateConversationData.score > 4) {
-
-            // scoreが4より大きい場合、ガムを連想したということ
-            session.send("あ！答えを保存するのが忘れました。もう一度最初からやります！");
+            session.send("好きなのは食べ物しかないね。健康に悪いからもう一度最初からやります！");
 	　　session.privateConversationData.question_num=0;
             session.beginDialog("20Q_question");
-
-        } else {
+        }else if(session.privateConversationData.score < 0){
+            session.send("何で好きじゃないの？もう一度最初からやります！");
+	　　session.privateConversationData.question_num=0;
+            session.beginDialog("20Q_question");
+        }else {
             //scoreが0だった時は回答不能
             session.endConversation("あなたが何をイメージしているのか分からない...")
         }
